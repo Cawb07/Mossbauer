@@ -1,5 +1,4 @@
 from scipy.optimize import curve_fit
-from scipy.interpolate import UnivariateSpline
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -23,13 +22,8 @@ gauss_fit = gauss(voltages, *coeff)
 print np.max(gauss_fit)
 print np.std(voltages)
 
-#spline = UnivariateSpline(voltages, -gauss_fit+np.max(gauss_fit)/2, s=0)
-spline = UnivariateSpline(voltages, -counts+np.max(counts)/2, s=0)
-r1, r2 = spline.roots()
-
 plt.plot(voltages, counts, 'ro')
 plt.plot(voltages, gauss_fit)
-plt.axvspan(r1, r2, facecolor='g', alpha=0.5)
 
 plt.xlabel('SWS Voltage')
 plt.ylabel('Gross Counts')

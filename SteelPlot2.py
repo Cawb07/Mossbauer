@@ -1,5 +1,4 @@
 from scipy.optimize import curve_fit
-from scipy.interpolate import UnivariateSpline
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -26,13 +25,9 @@ gauss_fit = gauss(velocities, *coeff)
 print np.max(gauss_fit)
 print np.std(gauss_fit)
 
-spline = UnivariateSpline(velocities, gauss_fit-np.max(gauss_fit)/2, s=0)
-r1, r2 = spline.roots()
-
 plt.plot(velocities, grossrates, 'ro')
 plt.plot(velocities, gauss_fit)
 plt.axis([-2, 2, 40, 90])
-#plt.axvspan(r1, r2, facecolor='g', alpha=0.5)
 
 plt.xlabel('Velocities')
 plt.ylabel('Gross Counting Rates')
